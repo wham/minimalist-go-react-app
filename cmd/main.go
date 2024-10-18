@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/evanw/esbuild/pkg/api"
 )
 
 func main() {
@@ -19,6 +21,17 @@ func main() {
 		}
 
 		t.Execute(w, struct{}{})
+	})
+
+	http.HandleFunc("/ui.js", func(w http.ResponseWriter, r *http.Request) {
+		result := api.Build(api.BuildOptions{
+			EntryPoints: []string{"ui/main.tsx"},
+			Bundle:      true,
+			Format:      api.FormatESModule,
+			Sourcemap:   api.SourceMapInline,
+		})
+
+		w.Write(result.OutputFiles[0].Contents)
 	})
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
