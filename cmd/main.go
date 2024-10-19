@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/evanw/esbuild/pkg/api"
 )
@@ -21,6 +22,17 @@ func main() {
 		}
 
 		t.Execute(w, struct{}{})
+	})
+
+	http.HandleFunc("GET /static/{path...}", func(w http.ResponseWriter, r *http.Request) {
+		path := "static/" + r.PathValue("path")
+		content, err := os.ReadFile(path)
+		if err != nil {
+			w.WriteHeader(http.StatusNotFound)
+			w.Write([]byte("Not found"))
+		} else {
+			w.Write(content)
+		}
 	})
 
 	http.HandleFunc("/ui.js", func(w http.ResponseWriter, r *http.Request) {
