@@ -19,6 +19,7 @@ export function App() {
 
   return (
     <div id="container">
+      <h1>TODO</h1>
       <Form onAdd={onAdd} />
       <List todos={todos} />
     </div>

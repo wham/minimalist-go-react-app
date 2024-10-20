@@ -6,9 +6,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/evanw/esbuild/pkg/api"
+	"github.com/wham/minimalist-go-react-app/v2/internal/assets"
 	"github.com/wham/minimalist-go-react-app/v2/internal/storage"
 )
 
@@ -26,9 +26,8 @@ func main() {
 		t.Execute(w, struct{}{})
 	})
 
-	http.HandleFunc("GET /static/{path...}", func(w http.ResponseWriter, r *http.Request) {
-		path := "static/" + r.PathValue("path")
-		content, err := os.ReadFile(path)
+	http.HandleFunc("GET /static/{name...}", func(w http.ResponseWriter, r *http.Request) {
+		content, err := assets.ReadStaticFile(r.PathValue("name"))
 		if err != nil {
 			w.WriteHeader(http.StatusNotFound)
 			w.Write([]byte("Not found"))

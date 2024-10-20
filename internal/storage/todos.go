@@ -4,7 +4,7 @@ type Todo struct {
 	Text string `json:"text"`
 }
 
-var todos []Todo
+var todos []Todo = []Todo{}
 
 func AddTodo(todo Todo) {
 	todos = append(todos, todo)
