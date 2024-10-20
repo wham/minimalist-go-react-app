@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 
@@ -16,7 +15,7 @@ func main() {
 	fmt.Println("Server is starting...")
 
 	http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		t, err := template.ParseFiles("templates/index.html")
+		t, err := assets.ParseTemplate("index.html")
 
 		if err != nil {
 			fmt.Fprintf(w, "Error: %s", err)
