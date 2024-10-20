@@ -13,9 +13,9 @@ func ReadStaticFile(name string) ([]byte, error) {
 	return os.ReadFile("static/" + name)
 }
 
-func ParseTemplate(name string) (*template.Template, error) {
+func ParseTemplate() (*template.Template, error) {
 	fs := os.DirFS("templates")
-	return template.ParseFS(fs, name)
+	return template.ParseFS(fs, "**.html")
 }
 
 func ReadUiJs() []byte {

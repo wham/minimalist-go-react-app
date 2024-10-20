@@ -14,14 +14,19 @@ func main() {
 	fmt.Println("Server is starting...")
 
 	http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		t, err := assets.ParseTemplate("index.html")
+		t, err := assets.ParseTemplate()
 
 		if err != nil {
 			fmt.Fprintf(w, "Error: %s", err)
 			return
 		}
 
-		t.Execute(w, struct{}{})
+		err = t.ExecuteTemplate(w, "index.html", struct{}{})
+
+		if err != nil {
+			fmt.Fprintf(w, "Error: %s", err)
+			return
+		}
 	})
 
 	http.HandleFunc("GET /static/{name...}", func(w http.ResponseWriter, r *http.Request) {
