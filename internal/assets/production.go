@@ -15,3 +15,7 @@ func ReadStaticFile(name string) ([]byte, error) {
 func ParseTemplate(name string) (*template.Template, error) {
 	return template.ParseFS(embedx.Templates, "templates/"+name)
 }
+
+func ReadUiJs() []byte {
+	return embedx.UiJs
+}

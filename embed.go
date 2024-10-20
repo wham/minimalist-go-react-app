@@ -9,3 +9,6 @@ var Static embed.FS
 
 //go:embed templates/*
 var Templates embed.FS
+
+//go:embed build/ui.js
+var UiJs []byte

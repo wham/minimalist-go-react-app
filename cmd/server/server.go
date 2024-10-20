@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/evanw/esbuild/pkg/api"
 	"github.com/wham/minimalist-go-react-app/v2/internal/assets"
 	"github.com/wham/minimalist-go-react-app/v2/internal/storage"
 )
@@ -36,14 +35,7 @@ func main() {
 	})
 
 	http.HandleFunc("GET /ui.js", func(w http.ResponseWriter, r *http.Request) {
-		result := api.Build(api.BuildOptions{
-			EntryPoints: []string{"ui/main.tsx"},
-			Bundle:      true,
-			Format:      api.FormatESModule,
-			Sourcemap:   api.SourceMapInline,
-		})
-
-		w.Write(result.OutputFiles[0].Contents)
+		w.Write(assets.ReadUiJs())
 	})
 
 	http.HandleFunc("GET /api/todos", func(w http.ResponseWriter, r *http.Request) {

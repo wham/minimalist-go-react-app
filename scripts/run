@@ -2,4 +2,4 @@
 set -e
 cd "$(dirname "$0")/.."
 
-go run -tags development cmd/main.go
+go run -tags development cmd/server/server.go
