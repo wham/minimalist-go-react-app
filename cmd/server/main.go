@@ -35,7 +35,7 @@ func main() {
 	})
 
 	http.HandleFunc("GET /ui.js", func(w http.ResponseWriter, r *http.Request) {
-		w.Write(assets.ReadJS())
+		w.Write(assets.ReadUI())
 	})
 
 	http.HandleFunc("GET /api/todos", func(w http.ResponseWriter, r *http.Request) {

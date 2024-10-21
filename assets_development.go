@@ -13,11 +13,11 @@ var StaticFS fs.FS
 var TemplatesFS fs.FS
 
 func init() {
-	StaticFS = os.DirFS(".")
-	TemplatesFS = StaticFS
+	StaticFS = os.DirFS("static")
+	TemplatesFS = os.DirFS(".")
 }
 
-func ReadJS() []byte {
+func ReadUI() []byte {
 	result := api.Build(api.BuildOptions{
 		EntryPoints: []string{"ui/main.tsx"},
 		Bundle:      true,

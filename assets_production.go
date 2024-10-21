@@ -13,8 +13,8 @@ var StaticFS embed.FS
 var TemplatesFS embed.FS
 
 //go:embed build/ui.js
-var js []byte
+var ui []byte
 
-func ReadJS() []byte {
-	return js
+func ReadUI() []byte {
+	return ui
 }
