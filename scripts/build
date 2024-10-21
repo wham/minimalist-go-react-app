@@ -2,5 +2,6 @@
 set -e
 cd "$(dirname "$0")/.."
 
-go run cmd/build/build.go
-go build -o build/minimalist-go-react-app cmd/server/server.go
+go run cmd/build/main.go
+go build -o build/minimalist-go-react-app cmd/server/main.go
+rm build/ui.js

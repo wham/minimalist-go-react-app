@@ -3,10 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 
-	"github.com/wham/minimalist-go-react-app/v2/internal/assets"
+	assets "github.com/wham/minimalist-go-react-app/v2"
 	"github.com/wham/minimalist-go-react-app/v2/internal/storage"
 )
 
@@ -14,7 +15,7 @@ func main() {
 	fmt.Println("Server is starting...")
 
 	http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		t, err := assets.ParseTemplate()
+		t, err := template.ParseFS(assets.TemplatesFS, "templates/**.html")
 
 		if err != nil {
 			fmt.Fprintf(w, "Error: %s", err)
@@ -30,17 +31,11 @@ func main() {
 	})
 
 	http.HandleFunc("GET /static/{name...}", func(w http.ResponseWriter, r *http.Request) {
-		content, err := assets.ReadStaticFile(r.PathValue("name"))
-		if err != nil {
-			w.WriteHeader(http.StatusNotFound)
-			w.Write([]byte("Not found"))
-		} else {
-			w.Write(content)
-		}
+		http.ServeFileFS(w, r, assets.StaticFS, r.PathValue("name"))
 	})
 
 	http.HandleFunc("GET /ui.js", func(w http.ResponseWriter, r *http.Request) {
-		w.Write(assets.ReadUiJs())
+		w.Write(assets.ReadJS())
 	})
 
 	http.HandleFunc("GET /api/todos", func(w http.ResponseWriter, r *http.Request) {

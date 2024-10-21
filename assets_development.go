@@ -3,22 +3,21 @@
 package assets
 
 import (
+	"io/fs"
 	"os"
-	"text/template"
 
 	"github.com/evanw/esbuild/pkg/api"
 )
 
-func ReadStaticFile(name string) ([]byte, error) {
-	return os.ReadFile("static/" + name)
+var StaticFS fs.FS
+var TemplatesFS fs.FS
+
+func init() {
+	StaticFS = os.DirFS(".")
+	TemplatesFS = StaticFS
 }
 
-func ParseTemplate() (*template.Template, error) {
-	fs := os.DirFS("templates")
-	return template.ParseFS(fs, "**.html")
-}
-
-func ReadUiJs() []byte {
+func ReadJS() []byte {
 	result := api.Build(api.BuildOptions{
 		EntryPoints: []string{"ui/main.tsx"},
 		Bundle:      true,
