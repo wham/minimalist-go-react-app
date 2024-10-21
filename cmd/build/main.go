@@ -3,15 +3,11 @@ package main
 import (
 	"os"
 
-	"github.com/evanw/esbuild/pkg/api"
+	"github.com/wham/minimalist-go-react-app/v2/internal/ui"
 )
 
 func main() {
-	result := api.Build(api.BuildOptions{
-		EntryPoints: []string{"ui/main.tsx"},
-		Bundle:      true,
-		Format:      api.FormatESModule,
-	})
+	data := ui.BuildForProduction()
 
-	os.WriteFile("build/ui.js", result.OutputFiles[0].Contents, 0644)
+	os.WriteFile("build/ui.js", data, 0644)
 }
