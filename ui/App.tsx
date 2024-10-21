@@ -8,7 +8,7 @@ export function App() {
 
   useEffect(() => {
     fetch("/api/todos").then((response) => {
-      response.json().then((todos) => setTodos(todos));
+      response.json().then((todos) => setTodos(todos || []));
     });
   }, []);
 

@@ -14,6 +14,8 @@ import (
 func main() {
 	fmt.Println("Server is starting...")
 
+	todos := storage.Todos{}
+
 	http.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		t, err := template.ParseFS(assets.TemplatesFS, "templates/**.html")
 
@@ -39,15 +41,14 @@ func main() {
 	})
 
 	http.HandleFunc("GET /api/todos", func(w http.ResponseWriter, r *http.Request) {
-		todos := storage.GetTodos()
-		json, _ := json.Marshal(todos)
+		json, _ := json.Marshal(todos.List())
 		w.Write(json)
 	})
 
 	http.HandleFunc("PUT /api/todos", func(w http.ResponseWriter, r *http.Request) {
 		todo := storage.Todo{}
 		json.NewDecoder(r.Body).Decode(&todo)
-		storage.AddTodo(todo)
+		todos.Add(todo)
 	})
 
 	log.Fatal(http.ListenAndServe(":8080", nil))

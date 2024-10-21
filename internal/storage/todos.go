@@ -4,12 +4,14 @@ type Todo struct {
 	Text string `json:"text"`
 }
 
-var todos []Todo = []Todo{}
-
-func AddTodo(todo Todo) {
-	todos = append(todos, todo)
+type Todos struct {
+	list []Todo
 }
 
-func GetTodos() []Todo {
-	return todos
+func (t *Todos) Add(todo Todo) {
+	t.list = append(t.list, todo)
+}
+
+func (t *Todos) List() []Todo {
+	return t.list
 }
