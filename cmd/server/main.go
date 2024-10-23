@@ -33,7 +33,7 @@ func main() {
 	})
 
 	http.HandleFunc("GET /static/{name...}", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFileFS(w, r, assets.StaticFS, r.PathValue("name"))
+		http.ServeFileFS(w, r, assets.StaticFS, "static/"+r.PathValue("name"))
 	})
 
 	http.HandleFunc("GET /ui.js", func(w http.ResponseWriter, r *http.Request) {
