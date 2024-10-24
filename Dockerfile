@@ -8,6 +8,7 @@ COPY . /workspace
 WORKDIR /workspace
 RUN npm ci --omit=dev
 RUN go run ./cmd/build/main.go
+RUN ls -la ./build
 RUN go build -o ./build/minimalist-go-react-app ./cmd/server/main.go
 
 FROM alpine:latest as runner
