@@ -7,6 +7,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 COPY . /workspace
 WORKDIR /workspace
 RUN npm ci --omit=dev
+RUN mkdir -p ./build
 RUN go run ./cmd/build/main.go
 RUN ls -la ./build
 RUN go build -o ./build/minimalist-go-react-app ./cmd/server/main.go
