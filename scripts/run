@@ -2,4 +2,5 @@
 set -e
 cd "$(dirname "$0")/.."
 
+npm i
 go run -tags development cmd/server/main.go
