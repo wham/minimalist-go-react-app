@@ -7,6 +7,9 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 COPY . /workspace
 WORKDIR /workspace
 RUN npm ci --omit=dev
+RUN go test -tags development ./internal/...
+RUN npm run tsc
+RUN npm test -- run
 RUN mkdir -p ./build
 RUN go run ./cmd/build/main.go
 RUN ls -la ./build
