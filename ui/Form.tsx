@@ -17,7 +17,7 @@ export function Form({ onAdd }: FormProps) {
       <input
         type="text"
         value={text}
-        onInput={(e) => setText(e.target.value)}
+        onInput={(e) => setText((e.target as HTMLInputElement).value)}
       />
       <button onClick={onClick}>Add</button>
     </div>
