@@ -2,7 +2,7 @@
 
 ## Pre-requisites
 
-Install Go, Node.js, and NPM.
+Install Go, Node.js, and NPM..
 
 ## Development
 
