@@ -1,0 +1,43 @@
+name: build
+on:
+  push:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  binary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v1
+        with:
+          go-version: 1.22
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.2
+      - run: |
+          npm ci
+          go run cmd/build-ui/main.go
+          GOOS=darwin GOARCH=arm64 go build -o build/minimalist-go-react-app cmd/server/main.go
+          GOOS=windows GOARCH=amd64 go build -o build/minimalist-go-react-app.exe cmd/server/main.go
+          tar -czvf build/minimalist-go-react-app-arm64.tar.gz build/minimalist-go-react-app
+      - uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            build/minimalist-go-react-app-arm64.tar.gz
+            build/minimalist-go-react-app.exe
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/login-action@v2 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: |
+            kajatools/minimalist-go-react-app:latest

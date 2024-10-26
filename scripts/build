@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+cd "$(dirname "$0")/.."
+
+npm ci
+GOOS= GOARCH= go run cmd/build-ui/main.go
+go build -o build/minimalist-go-react-app cmd/server/main.go
+rm build/ui.js
