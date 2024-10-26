@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+cd "$(dirname "$0")/.."
+
+docker build --rm -t minimalist-go-react-app:latest .
+
+# Stop and remove the container if it already exists
+docker rm -f minimalist-go-react-app &> /dev/null || true
+docker run --name minimalist-go-react-app -a STDOUT -p 8080:8080 minimalist-go-react-app:latest
