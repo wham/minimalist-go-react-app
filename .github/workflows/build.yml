@@ -1,8 +1,6 @@
 name: build
 on:
   push:
-    branches:
-      "*"
   workflow_dispatch:
 jobs:
   binary:
@@ -18,7 +16,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22.2
-      - run: ./scripts/build 
+      - run: ./scripts/build
+      - uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ./build/minimalist-go-react-app
+
   docker:
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +36,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             kajatools/minimalist-go-react-app:latest
