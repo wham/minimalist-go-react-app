@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 22.2
       - run: ./scripts/build
+      - run: zip release-${{ matrix.os }}.zip ./build/* -r      
       - uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
