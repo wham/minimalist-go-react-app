@@ -23,7 +23,7 @@ jobs:
       - uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ./build/minimalist-go-react-app
+          files: release-${{ matrix.os }}.zip
 
   docker:
     runs-on: ubuntu-latest
