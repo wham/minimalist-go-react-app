@@ -4,5 +4,10 @@ cd "$(dirname "$0")/.."
 
 npm ci
 go run cmd/build/main.go
-go build -o build/minimalist-go-react-app cmd/server/main.go
+if [ $(go env GOOS) = "windows" ]; then
+    suffix=".exe"
+else
+    suffix=""
+fi
+go build -o build/minimalist-go-react-app-$(go env GOARCH)$suffix cmd/server/main.go
 rm build/ui.js
