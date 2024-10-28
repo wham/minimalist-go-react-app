@@ -17,7 +17,7 @@ jobs:
           node-version: 22.2
       - run: |
           npm ci
-          go run cmd/build/main.go
+          go run cmd/build-ui/main.go
           GOOS=darwin GOARCH=arm64 go build -o build/minimalist-go-react-app cmd/server/main.go
           GOOS=windows GOARCH=amd64 go build -o build/minimalist-go-react-app.exe cmd/server/main.go
           tar -czvf build/minimalist-go-react-app-arm64.tar.gz build/minimalist-go-react-app
