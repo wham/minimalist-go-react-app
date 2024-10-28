@@ -26,7 +26,7 @@ func build() error {
 	}
 
 	outputFile := path.Join(outputDirectory, "ui.js")
-	if err := os.WriteFile(outputFile, data, 0666); err != nil {
+	if err := os.WriteFile(outputFile, data, 0644); err != nil {
 		slog.Error("Failed to write output file", "error", err)
 		return err
 	}
