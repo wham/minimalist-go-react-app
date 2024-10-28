@@ -20,7 +20,7 @@ func build() error {
 	data := ui.BuildForProduction()
 
 	outputDirectory := "build"
-	if err := os.MkdirAll(outputDirectory, os.ModeDir); err != nil {
+	if err := os.MkdirAll(outputDirectory, os.ModePerm); err != nil {
 		slog.Error("Failed to create output directory", "error", err)
 		return err
 	}
