@@ -23,9 +23,9 @@ jobs:
       - uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files:
-            - build/minimalist-go-react-app-arm64
-            - build/minimalist-go-react-app.exe
+          files: |
+            build/minimalist-go-react-app-arm64
+            build/minimalist-go-react-app.exe
   docker:
     runs-on: ubuntu-latest
     steps:
