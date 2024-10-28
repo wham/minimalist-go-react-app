@@ -18,14 +18,14 @@ jobs:
       - run: |
           npm ci
           go run cmd/build/main.go
-          GOOS=darwin GOARCH=arm64 go build -o build/minimalist-go-react-app-arm64 cmd/server/main.go
-          chmod +x ./build/minimalist-go-react-app-arm64
+          GOOS=darwin GOARCH=arm64 go build -o build/minimalist-go-react-app cmd/server/main.go
           GOOS=windows GOARCH=amd64 go build -o build/minimalist-go-react-app.exe cmd/server/main.go
+          tar -czvf build/minimalist-go-react-app-arm64.tar.gz build/minimalist-go-react-app
       - uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            build/minimalist-go-react-app-arm64
+            build/minimalist-go-react-app-arm64.tar.gz
             build/minimalist-go-react-app.exe
   docker:
     runs-on: ubuntu-latest
