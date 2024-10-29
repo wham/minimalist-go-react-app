@@ -1,3 +1,5 @@
 body {
     color: blue;
+    background-image: url("/static/logo.jpeg");
+    background-repeat: no-repeat;
 }

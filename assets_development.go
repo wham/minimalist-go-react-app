@@ -13,7 +13,7 @@ var StaticFS fs.FS
 var TemplatesFS fs.FS
 
 func init() {
-	StaticFS = os.DirFS("static")
+	StaticFS = os.DirFS(".")
 	TemplatesFS = os.DirFS(".")
 }
 
