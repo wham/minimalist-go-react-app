@@ -18,9 +18,11 @@ export function App() {
   };
 
   return (
-    <div className="container">
-      <img src="/static/logo.svg" alt="Logo" className="logo" />
-      <h1 className="title">TODO</h1>
+    <div className="app">
+      <div className="header">
+        <img src="/static/logo.svg" alt="Logo" className="logo" />
+        <h1 className="title">My TODO List</h1>
+      </div>
       <Form onAdd={onAdd} />
       <List todos={todos} />
     </div>

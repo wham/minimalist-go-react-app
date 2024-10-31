@@ -1,10 +1,14 @@
-.container {
+.app {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .logo {
