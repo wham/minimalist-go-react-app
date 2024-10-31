@@ -13,13 +13,13 @@ export function Form({ onAdd }: FormProps) {
   };
 
   return (
-    <div>
+    <>
       <input
         type="text"
         value={text}
         onInput={(e) => setText((e.target as HTMLInputElement).value)}
       />
       <button onClick={onClick}>Add</button>
-    </div>
+    </>
   );
 }
