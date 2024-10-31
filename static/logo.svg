@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 30 140 140">
+  <!-- Pot -->
+  <path d="M60 140 L140 140 L130 180 L70 180 Z" fill="#terra-cotta" />
+  
+  <!-- Plant leaves from bottom to top, with rounder curves and warmer greens -->
+  <path d="M85 140 C85 115, 60 110, 70 90 C80 110, 95 115, 85 140" fill="#8FBE89" />
+  <path d="M115 140 C115 115, 140 110, 130 90 C120 110, 105 115, 115 140" fill="#7EB074" />
+  
+  <path d="M90 120 C90 95, 65 90, 75 70 C85 90, 100 95, 90 120" fill="#9DCB94" />
+  <path d="M110 120 C110 95, 135 90, 125 70 C115 90, 100 95, 110 120" fill="#8FBE89" />
+  
+  <path d="M95 100 C95 75, 70 70, 80 50 C90 70, 105 75, 95 100" fill="#7EB074" />
+  <path d="M105 100 C105 75, 130 70, 120 50 C110 70, 95 75, 105 100" fill="#9DCB94" />
+  
+  <!-- Center leaf -->
+  <path d="M100 90 C100 65, 85 60, 90 40 C95 60, 115 65, 100 90" fill="#8FBE89" />
+</svg>

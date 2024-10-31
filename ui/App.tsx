@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form } from "./Form";
 import { List } from "./List";
 import { Todo } from "./todo";
@@ -18,8 +18,9 @@ export function App() {
   };
 
   return (
-    <div id="container">
-      <h1>TODO</h1>
+    <div className="container">
+      <img src="/static/logo.svg" alt="Logo" className="logo" />
+      <h1 className="title">TODO</h1>
       <Form onAdd={onAdd} />
       <List todos={todos} />
     </div>
