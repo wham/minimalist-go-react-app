@@ -1,43 +1,34 @@
-.app {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+#root {
+  width: 600px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
-    align-items: center;
 }
 
 .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.logo {
-  width: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.title {
-  font-size: 2rem;
-  margin-bottom: 20px;
+.form {
+  display: flex;
+  flex-direction: row;
 }
 
 input {
-  padding: 10px;
-  width: 300px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  font-size: 1em;
+  flex-grow: 1;
+}
+
+button {
+  font-size: 1em;
+  flex-grow: 0;
+  margin-left: 10px;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
-}
-
-li {
-  background: #f1f1f1;
-  padding: 10px;
-  margin-bottom: 10px;
-  width: 300px;
-  border-radius: 4px;
 }
