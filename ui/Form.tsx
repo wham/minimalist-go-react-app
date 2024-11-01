@@ -20,6 +20,9 @@ export function Form({ onAdd }: FormProps) {
         placeholder="TODO"
         value={text}
         onInput={(e) => setText((e.target as HTMLInputElement).value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onClick();
+        }}
       />
       <button onClick={onClick}>Add</button>
     </div>
