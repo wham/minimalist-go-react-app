@@ -1,6 +1,6 @@
 # minimalist-go-react-app
 
-You can build a web app with Go server and React UI with just three dependencies. You can distribute the app as a single executable binary, while still having a great development experience. This repository demonstrates how to do it.
+You can build a web app with a Go server and React UI with just three dependencies. You can distribute the app as a single executable binary, while having a great development experience. This repository demonstrates how to do it. The key concepts are detailed in the story [Minimalist Go React App](https://medium.com/@VeselyCodes/minimalist-go-react-app-36d154f028d6) on Medium.
 
 ![](/static/logo.svg)
 
